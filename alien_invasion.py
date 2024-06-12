@@ -48,6 +48,8 @@ class AlienInvasion:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.move_left = False
+        elif event.key == pygame.K_q:
+            sys.exit()
 
     def _update_screen(self):
         """画面上の画像を更新し、新しい画面に切り替える"""
