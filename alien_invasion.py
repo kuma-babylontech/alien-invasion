@@ -3,6 +3,7 @@ import pygame
 
 from settings import Settings
 from ship import Ship
+from gengar import Gengar
 
 
 class AlienInvasion:
@@ -16,7 +17,8 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("エイリアン侵略")
 
-        self.ship = Ship(self)
+        # self.ship = Ship(self)
+        self.gengar = Gengar(self)
 
     def run_game(self):
         """ゲームのメインループを開始する"""
@@ -33,7 +35,8 @@ class AlienInvasion:
     def _update_screen(self):
         """画面上の画像を更新し、新しい画面に切り替える"""
         self.screen.fill(self.settings.bg_color)
-        self.ship.blitme()
+        # self.ship.blitme()
+        self.gengar.blitme()
 
         pygame.display.flip()
 
