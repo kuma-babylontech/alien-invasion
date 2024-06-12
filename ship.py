@@ -16,13 +16,16 @@ class Ship:
         # 新しい宇宙船を画面下部の中央に配置する
         self.rect.midbottom = self.screen_rect.midbottom
 
-        # 移動フラグ
+        # 左右の移動フラグ
         self.moving_right = False
+        self.move_left = False
 
     def update(self):
         """移動フラグによって宇宙船の位置を更新する"""
         if self.moving_right:
             self.rect.x += 1
+        if self.move_left:
+            self.rect.x -= 1
 
     def blitme(self):
         """宇宙船を現在位置に描画する"""

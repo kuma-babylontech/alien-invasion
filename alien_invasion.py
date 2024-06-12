@@ -33,9 +33,13 @@ class AlienInvasion:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    self.ship.move_left = True
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
                     self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    self.ship.move_left = False
 
     def _update_screen(self):
         """画面上の画像を更新し、新しい画面に切り替える"""
