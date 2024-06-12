@@ -7,6 +7,7 @@ class Ship:
     def __init__(self, ai_game):
         """宇宙船を初期化し、開始時の位置を設定する"""
         self.screen = ai_game.screen
+        self.settings = ai_game.settings
         self.screen_rect = ai_game.screen.get_rect()
 
         # 宇宙船の画像を読み込み、サイズを取得する
@@ -16,16 +17,22 @@ class Ship:
         # 新しい宇宙船を画面下部の中央に配置する
         self.rect.midbottom = self.screen_rect.midbottom
 
+        # 宇宙船の水平位置の浮動小数点数を格納する
+        self.x = float(self.rect.x)
+
         # 左右の移動フラグ
         self.moving_right = False
         self.move_left = False
 
     def update(self):
-        """移動フラグによって宇宙船の位置を更新する"""
+        """左右の移動フラグによって宇宙船の位置を更新する"""
         if self.moving_right:
-            self.rect.x += 1
+            self.x += self.settings.ship_speed
         if self.move_left:
-            self.rect.x -= 1
+            self.x -= self.settings.ship_speed
+
+        # self.xからrectオブジェクトの位置を更新する
+        self.rect.x = self.x
 
     def blitme(self):
         """宇宙船を現在位置に描画する"""
