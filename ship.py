@@ -13,27 +13,29 @@ class Ship:
         # 宇宙船の画像を読み込み、サイズを取得する
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
+        # 右に90度回転させる
+        self.image = pygame.transform.rotate(self.image, -90)
 
-        # 新しい宇宙船を画面下部の中央に配置する
-        self.rect.midbottom = self.screen_rect.midbottom
+        # 新しい宇宙船を画面左端の中央に配置する
+        self.rect.midleft = self.screen_rect.midleft
 
-        # 宇宙船の水平位置の浮動小数点数を格納する
-        self.x = float(self.rect.x)
+        # 宇宙船の垂直位置の浮動小数点数を格納する
+        self.y = float(self.rect.y)
 
-        # 左右の移動フラグ
-        self.moving_right = False
-        self.move_left = False
+        # 上下の移動フラグ
+        self.moving_up = False
+        self.move_down = False
 
     def update(self):
-        """左右の移動フラグによって宇宙船の位置を更新する"""
-        # 宇宙船のxの値を更新する
-        if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.x += self.settings.ship_speed
-        if self.move_left and self.rect.left > 0:
-            self.x -= self.settings.ship_speed
+        """上下の移動フラグによって宇宙船の位置を更新する"""
+        # 宇宙船のyの値を更新する
+        if self.moving_up and self.rect.top > 0:
+            self.y -= self.settings.ship_speed
+        if self.move_down and self.rect.bottom < self.screen_rect.bottom:
+            self.y += self.settings.ship_speed
 
-        # self.xからrectオブジェクトの位置を更新する
-        self.rect.x = self.x
+        # self.yからrectオブジェクトの位置を更新する
+        self.rect.y = self.y
 
     def blitme(self):
         """宇宙船を現在位置に描画する"""

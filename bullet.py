@@ -14,16 +14,16 @@ class Bullet(Sprite):
 
         # (0, 0)の位置に弾の矩形を作成し、正しい位置を設定する
         self.rect = pygame.Rect(0, 0, self.settings.bullet_width, self.settings.bullet_height)
-        self.rect.midtop = ai_game.ship.rect.midtop
+        self.rect.midtop = ai_game.ship.rect.midright
 
         # 弾の位置を浮動小数点数で格納する
-        self.y = float(self.rect.y)
+        self.x = float(self.rect.x)
 
     def update(self):
-        """画面上に弾を移動する"""
+        """画面右に弾を移動する"""
         # 弾の位置を更新する
-        self.y -= self.settings.bullet_speed
-        self.rect.y = self.y
+        self.x += self.settings.bullet_speed
+        self.rect.x = self.x
 
     def draw_bullet(self):
         """画面上に弾を描画する"""
